@@ -5,7 +5,7 @@
 ## 開発環境
 
 Next.js：
-Laravel：
+Laravel：12.17.0
 MySQL
 
 
