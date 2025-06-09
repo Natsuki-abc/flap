@@ -29,20 +29,19 @@ services:
     networks:
       - app-network
 
-  # MySQL サービス
+  # PostgreSQL サービス
   db:
-    image: mysql:8.0
-    container_name: mysql-db
+    image: postgres:15
+    container_name: postgres-db
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: laravel
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: password
-      MYSQL_USER: laravel
+      POSTGRES_DB: laravel
+      POSTGRES_USER: laravel
+      POSTGRES_PASSWORD: password
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql-data:/var/lib/mysql
+      - postgres-data:/var/lib/postgresql/data
     networks:
       - app-network
 
@@ -51,4 +50,4 @@ networks:
     driver: bridge
 
 volumes:
-  mysql-data:
+  postgres-data:
