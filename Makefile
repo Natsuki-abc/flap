@@ -36,7 +36,7 @@ db:
 	@$(DC) exec db bash
 
 db.console:
-	@$(DC) exec db laravel -U laravel -p password
+	@$(DC) exec db psql -U laravel -d laravel
 
 cache clear:
 	@$(DC) exec backend php artisan config:clear

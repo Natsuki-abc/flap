@@ -5,8 +5,10 @@
 ## 開発環境
 
 Next.js：
+
 Laravel：12.17.0
-MySQL
+
+PostgreSQL：15
 
 
 ## ローカル環境構築方法
