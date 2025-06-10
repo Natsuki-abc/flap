@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Deck;
+use App\Http\Requests\DeckRequest;
 use Illuminate\Http\Request;
 
 class DeckController extends Controller
@@ -12,15 +13,17 @@ class DeckController extends Controller
      */
     public function index()
     {
-        //
+        $decks = Deck::all();
+        return response()->json($decks);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DeckRequest $request)
     {
-        //
+        $deck = Deck::create($request->validated());
+        return response()->json($deck, 201);
     }
 
     /**
@@ -28,15 +31,16 @@ class DeckController extends Controller
      */
     public function show(Deck $deck)
     {
-        //
+        return response()->json($deck);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Deck $deck)
+    public function update(DeckRequest $request, Deck $deck)
     {
-        //
+        $deck->update($request->validated());
+        return response()->json($deck);
     }
 
     /**
@@ -44,6 +48,7 @@ class DeckController extends Controller
      */
     public function destroy(Deck $deck)
     {
-        //
+        $deck->delete();
+        return response()->json(null, 204);
     }
 }
