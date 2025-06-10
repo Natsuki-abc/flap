@@ -18,18 +18,16 @@ class DatabaseSeeder extends Seeder
     {
         // Factory
         User::factory()->count(10)
-        ->has(
-            Deck::factory()->count(2)
-                ->state(['user_id' => $folder->user_id])
-                ->for($folder)
-                ->afterCreating(function ($deck) {
-                    Card::factory()->count(5)
-                        ->state(['user_id' => $deck->user_id])
-                        ->for($deck)
-                        ->create();
-                })
-            ->create()
-        )
+            ->afterCreating(function ($user) {
+                Deck::factory()->count(2)
+                    ->for($user)
+                    ->afterCreating(function ($deck) {
+                        Card::factory()->count(5)
+                            ->for($deck)
+                            ->create();
+                    })
+                    ->create();
+            })
         ->create();
     }
 }

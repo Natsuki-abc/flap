@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('deck_id')->constrained('decks');
+            $table->foreignId('deck_id')->constrained();
 
             $table->text('front_content');
             $table->text('back_content');
